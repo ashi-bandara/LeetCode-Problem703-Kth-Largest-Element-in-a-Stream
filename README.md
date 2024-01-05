@@ -1,24 +1,30 @@
 
 # LeetCode Challenge D21
-## Achievements
-[![image.png](https://i.postimg.cc/J4VTgVfn/image.png)](https://postimg.cc/23GFbJ8R)
-
-This solution outperformed 100% of Java users on LeetCode according to runtime metrics.
 
 
 ## Overview
 
-Welcome to my LeetCode solution repository! This project addresses the coding challenge presented by [1886.  Determine Whether Matrix Can Be Obtained By Rotation](https://leetcode.com/problems/determine-whether-matrix-can-be-obtained-by-rotation/). Below, you'll find details about the problem, my approach to solving it, and the implemented solution.
+Welcome to my LeetCode solution repository! This project addresses the coding challenge presented by [703.  Kth Largest Element in a Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/). Below, you'll find details about the problem, my approach to solving it, and the implemented solution.
 
 ## Problem Statement
-Given two `n x n` binary matrices `mat` and `target`, return `true` _if it is possible to make_ `mat` _equal to_ `target` _by  **rotating**_ `mat` _in  **90-degree increments**, or_ `false` _otherwise._
+Design a class to find the  `kth`  largest element in a stream. Note that it is the  `kth`  largest element in the sorted order, not the  `kth`  distinct element.
+
+Implement  `KthLargest`  class:
+-   `KthLargest(int k, int[] nums)`  Initializes the object with the integer  `k`  and the stream of integers  `nums`.
+-   `int add(int val)`  Appends the integer  `val`  to the stream and returns the element representing the  `kth`  largest element in the stream.
+
 
 **Example**
-![](https://assets.leetcode.com/uploads/2021/05/20/grid3.png)
 
-**Input:** mat = [[0,1],[1,0]], target = [[1,0],[0,1]]
-**Output:** true
-**Explanation:** We can rotate mat 90 degrees clockwise to make mat equal target.
+> **Input:** 
+> ["KthLargest", "add", "add", "add", "add", "add"] [[3, [4, 5, 8, 2]], [3], [5], [10], [9], [4]]
+> 
+> **Output:** [null, 4, 5, 5, 8, 8]
+> 
+> **Explanation** 
+> KthLargest kthLargest = new KthLargest(3, [4, 5, 8, 2]); kthLargest.add(3);   // return 4 kthLargest.add(5);   // return 5
+> kthLargest.add(10);  // return 5 kthLargest.add(9);   // return 8
+> kthLargest.add(4);   // return 8
 
 **Language Used**
 > Java
@@ -27,6 +33,9 @@ Given two `n x n` binary matrices `mat` and `target`, return `true` _if it is po
 > Easy
 
 ## Solution Overview
-My solution to this question was pretty much a brute force attempt. Basically, using a loop, the code rotates the matrix until the input matrix equals the target matrix. I initially attempted to use the deepEquals method to check if the matrices were equal to each other, but it seemed to have affected the runtime, therefore I decided to have another method `areArraysEqual` to check element by element if the matrices are identical.
 
-In the `rotateBy90` method, first the input 2D array was transposed, i.e. rows and columns were interchanged excluding the diagonal and then to complete the clockwise rotation by 90 degrees, the rows were reversed. About the decision to clone the matrix instead of altering it directly was picked up when I was searching on the formula to rotate a 2D array, which actually increases the readability and helps the code maintain the accuracy. 
+The `KthLargest` class is designed to efficiently find the kth largest element in a streaming set of integers. The class is initialized with an integer `k` and an initial array of integers `nums`. The primary functionality is provided by the `add` method, which appends a new integer to the streaming set and returns the kth largest element in the updated set.
+
+`KthLargest(int k, int[] nums)`: Initializes the object with `k` indicating the desired order and an initial set of integers.
+
+`int add(int val)`: Appends `val` to the streaming set, maintaining a sorted order. The method returns the kth largest element in the updated set.
